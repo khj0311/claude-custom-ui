@@ -56,12 +56,19 @@ The library includes the following components:
    - Rounded option
    - Closable alerts with animations
 
+4. **Accordion** (Surface component)
+   - Customized Material UI Accordion with enhanced styling
+   - Size variants (small, medium, large)
+   - Rounded option
+   - Custom header color support
+   - Smooth animations and hover effects
+
 ## Usage
 
 ```jsx
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { Autocomplete, Avatar, Alert } from 'claude-custom-ui';
+import { Autocomplete, Avatar, Alert, Accordion } from 'claude-custom-ui';
 
 const App = () => {
   return (
@@ -82,6 +89,13 @@ const App = () => {
         severity="success" 
         title="Success" 
         content="Operation completed successfully!"
+      />
+      
+      <h2>Accordion Example</h2>
+      <Accordion 
+        title="Expandable Section" 
+        content="This is the content inside the accordion."
+        headerColor="#e9501f"
       />
     </div>
   );
