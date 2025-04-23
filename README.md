@@ -63,12 +63,18 @@ The library includes the following components:
    - Custom header color support
    - Smooth animations and hover effects
 
+5. **AccordionGroup** (Surface component)
+   - Group multiple Accordion components together
+   - Single expansion mode option (only one accordion open at a time)
+   - Default expanded items configuration
+   - Consistent styling across grouped accordions
+
 ## Usage
 
 ```jsx
 import React from 'react';
 import { ThemeProvider } from '@mui/material/styles';
-import { Autocomplete, Avatar, Alert, Accordion } from 'claude-custom-ui';
+import { Autocomplete, Avatar, Alert, Accordion, AccordionGroup } from 'claude-custom-ui';
 
 const App = () => {
   return (
@@ -96,6 +102,23 @@ const App = () => {
         title="Expandable Section" 
         content="This is the content inside the accordion."
         headerColor="#e9501f"
+      />
+      
+      <h2>AccordionGroup Example</h2>
+      <AccordionGroup
+        items={[
+          {
+            id: 'item1',
+            title: 'First Item',
+            content: 'Content for the first accordion item'
+          },
+          {
+            id: 'item2',
+            title: 'Second Item',
+            content: 'Content for the second accordion item'
+          }
+        ]}
+        singleExpansion={true}
       />
     </div>
   );
