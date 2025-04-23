@@ -122,7 +122,7 @@ const StyledAccordion = styled(MuiAccordion, {
 }));
 
 // 스타일된 AccordionSummary
-const StyledAccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
+const StyledAccordionSummary = styled(MuiAccordionSummary)(() => ({
   cursor: 'pointer',
   '&.MuiAccordionSummary-root': {
     '&:hover': {
