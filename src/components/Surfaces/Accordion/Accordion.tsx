@@ -64,6 +64,7 @@ const StyledAccordion = styled(MuiAccordion, {
 
   // 모서리 둥글기 적용
   borderRadius: rounded ? '8px' : '4px',
+  overflow: 'hidden', // 추가: 내부 요소들이 모서리를 벗어나지 않도록 함
   '& .MuiAccordionSummary-root': {
     borderRadius: rounded ? '8px' : '4px',
   },
@@ -192,12 +193,15 @@ export const Accordion = ({
       expanded={isExpanded}
       onChange={handleChange}
       disabled={disabled}
+      disableGutters // 추가: 기본 패딩 제거
+      square={!rounded} // 추가: 기본 모서리 둥글기 제어
+      elevation={0} // 추가: 기본 그림자 제거 (커스텀 그림자 사용)
       {...props}
     >
       <AccordionSummary
         expandIcon={expandIcon}
-        aria-controls="accordion-content"
-        id="accordion-header"
+        aria-controls={`panel-content-${props.id || 'accordion'}`}
+        id={`panel-header-${props.id || 'accordion'}`}
       >
         {typeof title === 'string' ? (
           <Typography variant={size === 'large' ? 'h6' : size === 'medium' ? 'subtitle1' : 'subtitle2'}>
