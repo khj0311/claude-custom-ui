@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Accordion } from './Accordion';
 import { Box } from '@mui/material';
+import React from 'react';
 
 // 스토리북 메타데이터 설정
 const meta = {
