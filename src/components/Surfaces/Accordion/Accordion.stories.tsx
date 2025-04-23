@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import { Accordion } from './Accordion';
+import { Box } from '@mui/material';
 
 // 스토리북 메타데이터 설정
 const meta = {
@@ -136,22 +137,25 @@ export const ComplexContent: Story = {
 // 다중 아코디언 사용 예시
 export const MultipleAccordions: Story = {
   render: () => (
-    <div style={{ width: '100%', maxWidth: '500px' }}>
+    <Box sx={{ width: '100%', maxWidth: '500px', margin: '0 auto' }}>
       <Accordion 
+        id="accordion1"
         title="첫 번째 아코디언" 
-        content="첫 번째 아코디언의 내용입니다."
+        content="첫 번째 아코디언의 내용입니다. 클릭하여 펼쳐보세요."
         headerColor="#e9501f"
       />
       <Accordion 
+        id="accordion2"
         title="두 번째 아코디언" 
-        content="두 번째 아코디언의 내용입니다."
+        content="두 번째 아코디언의 내용입니다. 여러 아코디언을 함께 사용할 수 있습니다."
         headerColor="#313131"
       />
       <Accordion 
+        id="accordion3"
         title="세 번째 아코디언" 
-        content="세 번째 아코디언의 내용입니다."
+        content="세 번째 아코디언의 내용입니다. 이 예제는 아코디언을 여러 개 사용하는 방법을 보여줍니다."
         headerColor="#ffc107"
       />
-    </div>
+    </Box>
   ),
 };
