@@ -74,13 +74,8 @@ const StyledAccordion = styled(MuiAccordion, {
     '& .MuiAccordionSummary-root': {
       backgroundColor: `${customColor}15`, // 낮은 투명도로 배경색 적용
     },
-    '&.Mui-expanded .MuiAccordionSummary-root': {
-      backgroundColor: `${customColor}25`, // 확장 시 더 진한 배경색
-    },
-    '& .MuiButtonBase-root': {
-      '&:hover': {
-        backgroundColor: `${customColor}20`, // 호버 시 배경색
-      },
+    '& .MuiButtonBase-root:hover': {
+      backgroundColor: `${customColor}20`, // 호버 시 배경색
     },
   }),
 
@@ -111,6 +106,9 @@ const StyledAccordion = styled(MuiAccordion, {
     borderRadius: rounded ? '8px' : '4px',
     '& .MuiAccordionSummary-root': {
       borderRadius: rounded ? '8px 8px 0 0' : '4px 4px 0 0',
+      ...(customColor && {
+        backgroundColor: `${customColor}25`, // 확장 시 더 진한 배경색
+      }),
     },
   },
   
