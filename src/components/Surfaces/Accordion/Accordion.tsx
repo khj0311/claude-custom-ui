@@ -64,15 +64,9 @@ const StyledAccordion = styled(MuiAccordion, {
 
   // 모서리 둥글기 적용
   borderRadius: rounded ? '8px' : '4px',
-  overflow: 'hidden', // 추가: 내부 요소들이 모서리를 벗어나지 않도록 함
+  overflow: 'hidden', // 내부 요소들이 모서리를 벗어나지 않도록 함
   '& .MuiAccordionSummary-root': {
     borderRadius: rounded ? '8px' : '4px',
-  },
-  '&.Mui-expanded': {
-    borderRadius: rounded ? '8px' : '4px',
-    '& .MuiAccordionSummary-root': {
-      borderRadius: rounded ? '8px 8px 0 0' : '4px 4px 0 0',
-    },
   },
 
   // 커스텀 컬러
@@ -80,10 +74,8 @@ const StyledAccordion = styled(MuiAccordion, {
     '& .MuiAccordionSummary-root': {
       backgroundColor: `${customColor}15`, // 낮은 투명도로 배경색 적용
     },
-    '&.Mui-expanded': {
-      '& .MuiAccordionSummary-root': {
-        backgroundColor: `${customColor}25`, // 확장 시 더 진한 배경색
-      },
+    '&.Mui-expanded .MuiAccordionSummary-root': {
+      backgroundColor: `${customColor}25`, // 확장 시 더 진한 배경색
     },
     '& .MuiButtonBase-root': {
       '&:hover': {
@@ -112,10 +104,14 @@ const StyledAccordion = styled(MuiAccordion, {
     boxShadow: theme.shadows[2],
   },
   
-  // 확장 시 스타일
+  // 확장 시 스타일 - 중복 선택자 통합
   '&.Mui-expanded': {
     boxShadow: theme.shadows[3],
     margin: '16px 0',
+    borderRadius: rounded ? '8px' : '4px',
+    '& .MuiAccordionSummary-root': {
+      borderRadius: rounded ? '8px 8px 0 0' : '4px 4px 0 0',
+    },
   },
   
   // 아이콘 애니메이션
@@ -193,9 +189,9 @@ export const Accordion = ({
       expanded={isExpanded}
       onChange={handleChange}
       disabled={disabled}
-      disableGutters // 추가: 기본 패딩 제거
-      square={!rounded} // 추가: 기본 모서리 둥글기 제어
-      elevation={0} // 추가: 기본 그림자 제거 (커스텀 그림자 사용)
+      disableGutters // 기본 패딩 제거
+      square={!rounded} // 기본 모서리 둥글기 제어
+      elevation={0} // 기본 그림자 제거 (커스텀 그림자 사용)
       {...props}
     >
       <AccordionSummary
