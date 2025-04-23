@@ -2,15 +2,15 @@ import React, { useState } from 'react';
 import {
   Accordion as MuiAccordion,
   AccordionProps as MuiAccordionProps,
-  AccordionSummary,
-  AccordionDetails,
+  AccordionSummary as MuiAccordionSummary,
+  AccordionDetails as MuiAccordionDetails,
   styled,
   Typography,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { CommonProps, Size } from '../../../types';
 
-// 스타일 적용된 MUI Accordion
+// 스타일된 컴포넌트들
 const StyledAccordion = styled(MuiAccordion, {
   shouldForwardProp: (prop) =>
     prop !== 'customSize' && 
@@ -121,6 +121,22 @@ const StyledAccordion = styled(MuiAccordion, {
   },
 }));
 
+// 스타일된 AccordionSummary
+const StyledAccordionSummary = styled(MuiAccordionSummary)(({ theme }) => ({
+  cursor: 'pointer',
+  '&.MuiAccordionSummary-root': {
+    '&:hover': {
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+    },
+  },
+}));
+
+// 스타일된 AccordionDetails
+const StyledAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
+  padding: '16px',
+  borderTop: `1px solid ${theme.palette.divider}`,
+}));
+
 // 컴포넌트 Props 정의
 export interface AccordionProps extends CommonProps, Omit<MuiAccordionProps, 'children'> {
   /** 아코디언 제목 */
@@ -179,6 +195,11 @@ export const Accordion = ({
   const isControlled = expanded !== undefined;
   const isExpanded = isControlled ? expanded : internalExpanded;
 
+  // 유니크 아이디 생성
+  const accordionId = props.id || `accordion-${Math.random().toString(36).substring(2, 9)}`;
+  const panelContentId = `panel-content-${accordionId}`;
+  const panelHeaderId = `panel-header-${accordionId}`;
+
   return (
     <StyledAccordion
       customSize={size}
@@ -190,12 +211,14 @@ export const Accordion = ({
       disableGutters // 기본 패딩 제거
       square={!rounded} // 기본 모서리 둥글기 제어
       elevation={0} // 기본 그림자 제거 (커스텀 그림자 사용)
+      id={accordionId}
+      TransitionProps={{ unmountOnExit: true }} // 디테일 영역이 마운트 여부
       {...props}
     >
-      <AccordionSummary
+      <StyledAccordionSummary
         expandIcon={expandIcon}
-        aria-controls={`panel-content-${props.id || 'accordion'}`}
-        id={`panel-header-${props.id || 'accordion'}`}
+        aria-controls={panelContentId}
+        id={panelHeaderId}
       >
         {typeof title === 'string' ? (
           <Typography variant={size === 'large' ? 'h6' : size === 'medium' ? 'subtitle1' : 'subtitle2'}>
@@ -204,14 +227,14 @@ export const Accordion = ({
         ) : (
           title
         )}
-      </AccordionSummary>
-      <AccordionDetails>
+      </StyledAccordionSummary>
+      <StyledAccordionDetails>
         {typeof content === 'string' ? (
           <Typography>{content}</Typography>
         ) : (
           content
         )}
-      </AccordionDetails>
+      </StyledAccordionDetails>
     </StyledAccordion>
   );
 };
