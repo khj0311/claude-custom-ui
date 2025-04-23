@@ -1,0 +1,26 @@
+# 소스 파일
+src/
+
+# 테스트 파일
+**/*.test.*
+**/*.spec.*
+**/__tests__/
+
+# 설정 파일
+vite.config.ts
+tsconfig.json
+tsconfig.node.json
+.eslintrc.json
+.gitignore
+.storybook/
+
+# 빌드 결과물 외 폴더
+node_modules/
+storybook-static/
+coverage/
+.vscode/
+.idea/
+
+# 기타 파일
+*.log
+*.tgz
