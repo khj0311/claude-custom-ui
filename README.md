@@ -39,11 +39,56 @@ yarn build
 
 The library includes the following components:
 
-1. Autocomplete (Input component)
-2. Avatar (Data Display component)
-3. Alert (Feedback component)
+1. **Autocomplete** (Input component)
+   - Customized Material UI Autocomplete with enhanced styling
+   - Improved focus states and animations
+   - Various size options
 
-More components will be added in future updates.
+2. **Avatar** (Data Display component)
+   - Customized Material UI Avatar with additional features
+   - Status indicators (online, offline, away, busy)
+   - Tooltip support
+   - Custom color themes and sizes
+
+3. **Alert** (Feedback component)
+   - Customized Material UI Alert with additional features
+   - Different size variants
+   - Rounded option
+   - Closable alerts with animations
+
+## Usage
+
+```jsx
+import React from 'react';
+import { ThemeProvider } from '@mui/material/styles';
+import { Autocomplete, Avatar, Alert } from 'claude-custom-ui';
+
+const App = () => {
+  return (
+    <div>
+      <h1>Claude Custom UI Components</h1>
+      
+      <h2>Autocomplete Example</h2>
+      <Autocomplete
+        options={['Option 1', 'Option 2', 'Option 3']}
+        label="Select an option"
+      />
+      
+      <h2>Avatar Example</h2>
+      <Avatar alt="User" status="online" />
+      
+      <h2>Alert Example</h2>
+      <Alert 
+        severity="success" 
+        title="Success" 
+        content="Operation completed successfully!"
+      />
+    </div>
+  );
+};
+
+export default App;
+```
 
 ## License
 
