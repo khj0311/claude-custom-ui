@@ -8,7 +8,14 @@ import {
   Typography,
 } from '@mui/material';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { CommonProps, Size } from '../../../types';
+
+// CommonProps와 Size 타입 정의
+interface CommonProps {
+  className?: string;
+  style?: React.CSSProperties;
+}
+
+type Size = 'small' | 'medium' | 'large';
 
 // 스타일된 컴포넌트들
 const StyledAccordion = styled(MuiAccordion, {
@@ -137,8 +144,8 @@ const StyledAccordionDetails = styled(MuiAccordionDetails)(({ theme }) => ({
   borderTop: `1px solid ${theme.palette.divider}`,
 }));
 
-// 컴포넌트 Props 정의
-export interface AccordionProps extends CommonProps, Omit<MuiAccordionProps, 'children'> {
+// 컴포넌트 Props 정의 (문제 해결)
+interface AccordionBaseProps extends CommonProps {
   /** 아코디언 제목 */
   title: React.ReactNode;
   /** 아코디언 내용 */
@@ -160,6 +167,8 @@ export interface AccordionProps extends CommonProps, Omit<MuiAccordionProps, 'ch
   /** 비활성화 여부 */
   disabled?: boolean;
 }
+
+export type AccordionProps = AccordionBaseProps & Omit<MuiAccordionProps, 'children' | 'title' | 'onChange'>;
 
 /**
  * 커스텀 Accordion 컴포넌트
