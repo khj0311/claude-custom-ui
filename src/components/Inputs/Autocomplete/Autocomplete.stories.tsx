@@ -20,6 +20,12 @@ const movieOptions = [
   { title: '아바타', year: 2009 },
 ];
 
+// 영화 옵션 인터페이스 정의
+interface MovieOption {
+  title: string;
+  year: number;
+}
+
 // 스토리북 메타데이터 설정
 const meta = {
   title: 'Components/Inputs/Autocomplete',
@@ -80,7 +86,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     options: movieOptions,
-    getOptionLabel: (option: any) => option.title || '',
+    getOptionLabel: (option: MovieOption) => option.title || '',
     label: '영화 선택',
     placeholder: '영화를 검색하세요',
     helperText: '원하는 영화를 선택하세요',
